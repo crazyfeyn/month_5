@@ -56,7 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Fifteen game", style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        title: const Text(
+          "Fifteen game",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: BlocBuilder<PuzzleBloc, PuzzleState>(
         builder: (context, state) {
@@ -70,7 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisCount: 4, crossAxisSpacing: 10, mainAxisSpacing: 10),
             itemBuilder: (context, index) {
               int row = index ~/ 4;
-              int col = index % 4;
+              int col = index % 4; 
+              
               return GestureDetector(
                 onTap: () {
                   BlocProvider.of<PuzzleBloc>(context).add(OnPressedEvent(

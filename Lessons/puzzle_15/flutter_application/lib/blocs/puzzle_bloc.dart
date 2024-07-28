@@ -12,7 +12,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   void _onPressedEvent(OnPressedEvent event, Emitter<PuzzleState> emit) {
     final row = event.row;
     final col = event.col;
-    
+
     if (canMove(row, col)) {
       swapTiles(row, col);
       emit(PuzzleUpdatedState(grid: List.from(grid)));
@@ -21,12 +21,21 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   bool canMove(int row, int col) {
     return (row > 0 && grid[row - 1][col] == '') ||
-           (row < 3 && grid[row + 1][col] == '') ||
-           (col > 0 && grid[row][col - 1] == '') ||
-           (col < 3 && grid[row][col + 1] == '');
+        (row < 3 && grid[row + 1][col] == '') ||
+        (col > 0 && grid[row][col - 1] == '') ||
+        (col < 3 && grid[row][col + 1] == '');
   }
 
   void swapTiles(int row, int col) {
+    if (grid ==
+        [
+          ['1', '2', '3', '4'],
+          ['5', '6', '7', '8'],
+          ['9', '10', '11', '12'],
+          ['13', '14', '15', '']
+        ]) {
+      print('won----');
+    }
     for (int i = 0; i < 4; i++) {
       for (int j = 0; j < 4; j++) {
         if (grid[i][j] == '') {
