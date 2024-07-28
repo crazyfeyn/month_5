@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/utils/save_datas.dart';
+import 'package:flutter_application/views/screens/camera_scan_screen.dart';
+import 'package:flutter_application/views/screens/text_qr.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,7 +11,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final SaveDatas saveDatas = SaveDatas();
   List<String> images = ['text.png', 'web.png', 'wifi.png'];
+
+  @override
+  void initState() {
+    super.initState();
+    loadSavedData();
+  }
+
+  Future<void> loadSavedData() async {
+    var data = await saveDatas.loadSavedData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +39,20 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           ...List.generate(3, (int index) {
             return GestureDetector(
-              onTap: () {},
+              onTap: () {
+                switch (index) {
+                  case 0:
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => TextQr()));
+                  case 1:
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CameraScanScreen()));
+                    break;
+                  default:
+                }
+              },
               child: Container(
                 margin: const EdgeInsets.all(10),
                 alignment: Alignment.center,
