@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/views/screens/scanned_screen.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class CameraScanScreen extends StatefulWidget {
@@ -12,6 +13,7 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
   String? qrCodeResult;
+  bool isNavigating = false;
 
   @override
   void reassemble() {
@@ -36,7 +38,21 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
       setState(() {
         qrCodeResult = scanData.code;
       });
+      if (qrCodeResult != null && !isNavigating) {
+        _navigateToScannedScreen();
+      }
     });
+  }
+
+  Future<void> _navigateToScannedScreen() async {
+    isNavigating = true;
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ScannedScreen(qrCodeData: qrCodeResult!),
+      ),
+    );
+    isNavigating = false;
   }
 
   @override
@@ -67,25 +83,6 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
               child: qrCodeResult != null
                   ? Text('Scanned Code: $qrCodeResult')
                   : const Text('Scan a code'),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(10),
-            alignment: Alignment.center,
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                border: Border.all(
-                  color: const Color(0xFFFDB623),
-                ),
-                color: const Color(0xFF333333),
-              ),
-              child: Image.asset(
-                'assets/images/share.png',
-                color: const Color(0xFFFDB623),
-                width: 30,
-              ),
             ),
           ),
         ],

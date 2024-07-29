@@ -26,9 +26,8 @@ class _TextQrState extends State<TextQr> {
   Future<void> loadSavedData() async {
     try {
       data = await saveDatas.loadSavedData();
-      setState(() {}); // Update UI after data is loaded
+      setState(() {});
     } catch (e) {
-      // Handle error
       print('Error loading data: $e');
     }
   }
@@ -38,7 +37,6 @@ class _TextQrState extends State<TextQr> {
       await saveDatas.saveData(newData);
       await loadSavedData();
     } catch (e) {
-      // Handle error
       print('Error saving data: $e');
     }
   }
@@ -56,12 +54,18 @@ class _TextQrState extends State<TextQr> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            QrImageView(
-              backgroundColor: Colors.white,
-              data: context.watch<TextQrImageCubit>().currentData(),
-              version: QrVersions.auto,
-              size: 200.0,
-            ),
+            context.watch<TextQrImageCubit>().currentData() != ''
+                ? QrImageView(
+                    backgroundColor: Colors.white,
+                    data: context.watch<TextQrImageCubit>().currentData(),
+                    version: QrVersions.auto,
+                    size: 200.0,
+                  )
+                : Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.white,
+                  ),
             const SizedBox(height: 20),
             TextField(
               controller: textController,

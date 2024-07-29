@@ -43,12 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 switch (index) {
                   case 0:
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => TextQr()));
+                        MaterialPageRoute(builder: (context) => const TextQr()));
                   case 1:
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CameraScanScreen()));
+                            builder: (context) => const CameraScanScreen()));
                     break;
                   default:
                 }
