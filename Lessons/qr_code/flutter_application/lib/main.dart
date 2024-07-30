@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/logic/cubits/text_qr_image_cubit.dart';
+import 'package:flutter_application/views/screens/camera_scan_screen.dart';
 import 'package:flutter_application/views/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Colors.blueGrey,
           ),
           debugShowCheckedModeBanner: false,
-          home: const HomeScreen(),
+          home: const CameraScanScreen(),
         ));
   }
 }

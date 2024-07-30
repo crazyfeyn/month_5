@@ -57,7 +57,7 @@ class BottomPadding extends StatelessWidget {
                 : const SizedBox(),
             GestureDetector(
               onTap: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (ctx) => const HistoryScreen()));
               },
               child: Wrap(
