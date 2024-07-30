@@ -14,5 +14,6 @@ class SaveDatas {
     final prefs = await SharedPreferences.getInstance();
     savedDataList.add(data);
     await prefs.setStringList('qrDataList', savedDataList);
+    print(savedDataList);
   }
 }

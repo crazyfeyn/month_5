@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/utils/save_datas.dart';
 import 'package:flutter_application/views/screens/scanned_screen.dart';
+import 'package:flutter_application/views/screens/text_qr.dart';
+import 'package:flutter_application/views/widgets/bottom_padding.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class CameraScanScreen extends StatefulWidget {
@@ -10,6 +13,7 @@ class CameraScanScreen extends StatefulWidget {
 }
 
 class _CameraScanScreenState extends State<CameraScanScreen> {
+  final saveDatas = SaveDatas();
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
   String? qrCodeResult;
@@ -46,6 +50,7 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
 
   Future<void> _navigateToScannedScreen() async {
     isNavigating = true;
+    await saveDatas.saveData(qrCodeResult!);
     await Navigator.push(
       context,
       MaterialPageRoute(
@@ -77,14 +82,15 @@ class _CameraScanScreenState extends State<CameraScanScreen> {
               ),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: qrCodeResult != null
-                  ? Text('Scanned Code: $qrCodeResult')
-                  : const Text('Scan a code'),
-            ),
-          ),
+          // Expanded(
+          //   flex: 1,
+          //   child: Center(
+          //     child: qrCodeResult != null
+          //         ? Text('Scanned Code: $qrCodeResult')
+          //         : const Text('Scan a code'),
+          //   ),
+          // ),
+          BottomPadding()
         ],
       ),
     );

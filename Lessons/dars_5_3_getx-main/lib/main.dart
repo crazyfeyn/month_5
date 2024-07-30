@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => WordsBloc(),
       child: MaterialApp(
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.dark,
         home: WordsScreen(),
         debugShowCheckedModeBanner: false,
       ),

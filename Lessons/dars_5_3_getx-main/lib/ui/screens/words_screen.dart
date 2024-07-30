@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WordsScreen extends StatefulWidget {
-  WordsScreen({super.key});
+  const WordsScreen({super.key});
 
   @override
   State<WordsScreen> createState() => _WordsScreenState();
@@ -85,9 +85,10 @@ class _WordsScreenState extends State<WordsScreen> {
                           horizontal: 16, vertical: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            height: 130,
+                          SizedBox(
+                            width: 600,
                             child: checkWin
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -191,7 +192,7 @@ class _WordsScreenState extends State<WordsScreen> {
                                     ),
                                   ),
                                 )
-                              : Container(
+                              : SizedBox(
                                   height: 200,
                                   child: GridView.builder(
                                     gridDelegate:
