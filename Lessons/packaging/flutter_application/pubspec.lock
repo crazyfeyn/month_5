@@ -44,9 +44,10 @@ packages:
   crazyfeyns_first_package:
     dependency: "direct main"
     description:
-      path: crazyfeyns_first_package
-      relative: true
-    source: path
+      name: crazyfeyns_first_package
+      sha256: b68a84203ccc5e3c80a3deae56a80d86e710a972f54451c049dd7099e05fd943
+      url: "https://pub.dev"
+    source: hosted
     version: "1.0.0"
   cupertino_icons:
     dependency: "direct main"

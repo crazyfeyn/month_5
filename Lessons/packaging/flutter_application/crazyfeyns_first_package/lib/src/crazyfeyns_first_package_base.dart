@@ -1,3 +1,4 @@
+// ignore: public_member_api_docs
 class CrazyfeynsFirstPackageBase {
   String toLowerCase(String word) {
     List<String> lst = word.split(' ');
