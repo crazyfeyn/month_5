@@ -17,8 +17,12 @@ class MainActivity: FlutterActivity() {
             call, result ->
             if (call.method == "toggleFlashlight") {
                 val isOn = call.argument<Boolean>("isOn") ?: false
-                toggleFlashlight(isOn)
-                result.success(null)
+                try {
+                    toggleFlashlight(isOn)
+                    result.success(null)
+                } catch (e: Exception) {
+                    result.error("FLASHLIGHT_ERROR", e.message, null)
+                }
             } else {
                 result.notImplemented()
             }
@@ -32,7 +36,7 @@ class MainActivity: FlutterActivity() {
             cameraManager.setTorchMode(cameraId, isOn)
         } catch (e: CameraAccessException) {
             e.printStackTrace()
+            throw e
         }
     }
 }
-
